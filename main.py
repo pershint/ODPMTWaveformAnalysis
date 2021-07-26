@@ -33,8 +33,8 @@ def EstimateSimpleBaseline(waveform, bl_range):
 if __name__ == '__main__':
     myPulseFinder = pu.PulseFinder()
     myPulseFinder.SetPulseThreshold(5) #nsigma outside baseline to define a pulse
-    myPulseFinder.SetEdgeSamples(5)
-    BL_RANGE_NSAMP = [0, 100]
+    myPulseFinder.SetEdgeSamples(8)
+    BL_RANGE_NSAMP = [0, 70]
     print("Let's analyze a waveform")
     print("usage: main.py [waveform_filename]")
     wavefile = sys.argv[1]
@@ -65,4 +65,5 @@ if __name__ == '__main__':
         print("PULSE NUMBER: " + str(j))
         print("PULSE PEAK AMPLITUDE: %f"%(pulse['peak_amplitude']))
         print("PULSE PEAK AMPLITUDE TIME: %f ns"%(waveform["second"][pulse['peak_amplitude_sample']]*1E9))
+        print("PULSE INTEGRAL : %f V"%(pulse['integral']))
 

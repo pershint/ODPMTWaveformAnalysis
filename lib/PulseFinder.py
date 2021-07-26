@@ -16,7 +16,7 @@ class PulseFinder(object):
         Comments
         '''
         pulses = []
-        pulse = {'peak_time': -9999,'min_time_sample': -9999, 'max_time_sample': -9999, 'peak_amplitude': -9999, 'pulse_integral': 0}
+        pulse = {'peak_time': -9999,'min_time_sample': -9999, 'max_time_sample': -9999, 'peak_amplitude': -9999, 'integral': 0}
         in_pulse = False
         bl_counter = 0
         #TODO:  We can make this faster
@@ -39,7 +39,7 @@ class PulseFinder(object):
                 if np.abs(sample) > np.abs(pulse['peak_amplitude']):
                     pulse['peak_amplitude'] = sample
                     pulse['peak_time'] = wy[j]
-                pulse['pulse_integral']+=sample
+                pulse['integral']+=sample
             elif in_pulse: #no longer in a pulse
                 if bl_counter < 5:
                     bl_counter+=1
@@ -50,5 +50,5 @@ class PulseFinder(object):
                     in_pulse = False
                     pulse['max_time_sample'] = j + self.edge_addnsamps
                     pulses.append(pulse)
-                    pulse = {'peak_time': -9999,'min_time_sample': -9999, 'max_time_sample': -9999, 'peak_amplitude': -9999, 'pulse_integral': 0}
+                    pulse = {'peak_time': -9999,'min_time_sample': -9999, 'max_time_sample': -9999, 'peak_amplitude': -9999, 'integral': 0}
         return pulses
