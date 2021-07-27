@@ -52,3 +52,4 @@ class PulseFinder(object):
                     pulses.append(pulse)
                     pulse = {'peak_time': -9999,'min_time_sample': -9999, 'max_time_sample': -9999, 'peak_amplitude': -9999, 'integral': 0}
         return pulses
+        
