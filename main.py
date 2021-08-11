@@ -38,6 +38,7 @@ if __name__ == '__main__':
     print("Let's analyze a waveform")
     print("usage: main.py [waveform_filename]")
     wavefile = sys.argv[1]
+    fileNum = wavefile[:-4]
     waveform = OscopePrintToCSV(wavefile)
     mu, sigma = EstimateSimpleBaseline(waveform['Volt'],BL_RANGE_NSAMP)
     pulses = myPulseFinder.FindPulses_SimpleBaseline(waveform['second'],waveform['Volt'],mu,sigma)
@@ -60,7 +61,8 @@ if __name__ == '__main__':
     plt.xlabel("Time (ns)")
     plt.ylabel("Voltage (V)")
     plt.title("Waveform from OD PMT 902 ")#\n (Signal to oscilloscope with 1 MOhm impedance)")
-    plt.show()
+    plt.savefig(fileNum,papertype='a0')
+    #plt.show()
     for j,pulse in enumerate(pulses):
         print("PULSE NUMBER: " + str(j))
         print("PULSE PEAK AMPLITUDE: %f"%(pulse['peak_amplitude']))
