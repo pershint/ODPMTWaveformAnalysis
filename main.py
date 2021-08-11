@@ -66,4 +66,3 @@ if __name__ == '__main__':
         print("PULSE PEAK AMPLITUDE: %f"%(pulse['peak_amplitude']))
         print("PULSE PEAK AMPLITUDE TIME: %f ns"%(waveform["second"][pulse['peak_amplitude_sample']]*1E9))
         print("PULSE INTEGRAL : %f V"%(pulse['integral']))
-
